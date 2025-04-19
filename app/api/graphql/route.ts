@@ -1,14 +1,15 @@
-import { createYoga, createSchema } from 'graphql-yoga';
-import { type NextRequest } from 'next/server';
-import resolvers from '@/graphql/resolvers';
-import typeDefs from '@/graphql/schema';
+import { createSchema, createYoga } from 'graphql-yoga';
+import { typeDefs } from '@/graphql/schema';
+import { resolvers } from '@/graphql/resolvers';
 
-const yoga = createYoga<{
-  req: NextRequest;
-}>({
+interface NextContext {
+  params: Promise<Record<string, string>>;
+}
+
+const { handleRequest } = createYoga<NextContext>({
   schema: createSchema({ typeDefs, resolvers }),
   graphqlEndpoint: '/api/graphql',
-  fetchAPI: { Request, Response },
+  fetchAPI: { Response },
 });
 
-export { yoga as GET, yoga as POST };
+export { handleRequest as GET, handleRequest as POST };
