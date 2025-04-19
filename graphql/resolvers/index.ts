@@ -1,6 +1,6 @@
 import { todoResolvers } from './todo';
 
-const resolvers = {
+export const resolvers = {
   Query: {
     ...todoResolvers.Query,
   },
@@ -8,5 +8,3 @@ const resolvers = {
     ...todoResolvers.Mutation,
   },
 };
-
-export default resolvers;

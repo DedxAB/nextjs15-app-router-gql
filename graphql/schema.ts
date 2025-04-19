@@ -10,6 +10,4 @@ const userTypeDefs = fs.readFileSync(
   'utf-8'
 );
 
-const typeDefs = `${todoTypeDefs}\n${userTypeDefs}`;
-
-export default typeDefs;
+export const typeDefs = `${todoTypeDefs}\n${userTypeDefs}`;
