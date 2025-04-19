@@ -2,6 +2,7 @@
 
 import { gql, useMutation, useQuery } from '@apollo/client';
 import client from '@/lib/apollo-client';
+import { ITodo } from '@/models/todo.model';
 
 const GET_TODOS = gql`
   query {
@@ -24,7 +25,7 @@ const ADD_TODO = gql`
 `;
 
 export default function Home() {
-  const { data, loading } = useQuery(GET_TODOS, { client });
+  const { data, loading } = useQuery<{ todos: ITodo[] }>(GET_TODOS, { client });
   const [addTodo] = useMutation(ADD_TODO, {
     client,
     refetchQueries: [{ query: GET_TODOS }],
@@ -42,8 +43,8 @@ export default function Home() {
         Add Task
       </button>
       <ul className="mt-4 space-y-2">
-        {data.todos.map((todo: any) => (
-          <li key={todo._id}>
+        {data?.todos?.map((todo: ITodo) => (
+          <li key={String(todo._id)}>
             {todo.title} {todo.completed ? '✅' : '❌'}
           </li>
         ))}
