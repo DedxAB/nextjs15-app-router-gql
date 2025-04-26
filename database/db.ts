@@ -7,6 +7,8 @@ export const connectDB = async () => {
   }
 
   // 0 = disconnected, 1 = connected, 2 = connecting, 3 = disconnecting
+  console.log('✅ MongoDB connected at', new URL(MONGODB_URI).host);
+
   if (mongoose.connection.readyState === 1) {
     console.log('MongoDB already connected.');
     return;
