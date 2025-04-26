@@ -2,7 +2,7 @@ import { MONGODB_URI } from '@/utils/constants';
 import mongoose from 'mongoose';
 
 export const connectDB = async () => {
-  if (!MONGODB_URI.trim()) {
+  if (!MONGODB_URI) {
     throw new Error('MONGODB_URI is not defined');
   }
 
