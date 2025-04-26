@@ -5,7 +5,7 @@ import AddTodo from './components/AddTodo';
 import TodoList from './components/TodoList';
 import type { TodosResponse } from './types';
 
-export default async function page() {
+export default async function Page() {
   const { data, error } = await fetchGraphQL<TodosResponse>(GET_TODOS);
 
   return (

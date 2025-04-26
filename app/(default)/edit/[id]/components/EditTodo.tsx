@@ -6,12 +6,12 @@ import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-type propTypes = {
+type PageProps = {
   data: { todo: TTodo } | null;
   error: string | null;
 };
 
-const EditTodo = ({ data, error }: propTypes) => {
+const EditTodo = ({ data, error }: PageProps) => {
   const [todo, setTodo] = useState<TTodo | null>(data?.todo || null);
   const router = useRouter();
 

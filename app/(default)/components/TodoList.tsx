@@ -4,12 +4,12 @@ import { TTodo } from '@/models/todo.model';
 import dayjs from 'dayjs';
 import { useRouter } from 'next/navigation';
 
-type propTypes = {
+type PageProps = {
   data: { todos: TTodo[] } | null;
   error: string | null;
 };
 
-export default function TodoList({ data, error }: propTypes) {
+export default function TodoList({ data, error }: PageProps) {
   const router = useRouter();
 
   if (error) {
