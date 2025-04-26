@@ -8,7 +8,7 @@ type PageProps = {
 };
 
 export default async function Page({ params }: PageProps) {
-  const { id } = params;
+  const { id } = await params;
 
   const { data, error } = await fetchGraphQL<TodoResponse>(GET_TODO_BY_ID, {
     id,
