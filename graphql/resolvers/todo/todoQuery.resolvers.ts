@@ -7,5 +7,9 @@ export const todoQueryResolvers = {
       await connectDB();
       return Todo.find();
     },
+    todo: async (_: unknown, { id }: { id: string }) => {
+      await connectDB();
+      return Todo.findById(id);
+    },
   },
 };
