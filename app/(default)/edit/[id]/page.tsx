@@ -3,13 +3,16 @@ import { fetchGraphQL } from '@/lib/graphql-request';
 import type { TodoResponse } from '../../types';
 import EditTodo from './components/EditTodo';
 
-export default async function TodoEditPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+type PageProps = {
+  params: {
+    id: string;
+  };
+};
+
+export default async function TodoEditPage({ params }: PageProps) {
+  const { id } = params;
   const { data, error } = await fetchGraphQL<TodoResponse>(GET_TODO_BY_ID, {
-    id: params.id,
+    id,
   });
 
   return (
