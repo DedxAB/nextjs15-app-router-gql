@@ -16,7 +16,6 @@ const loggerPlugin: Plugin = {
   },
 };
 
-// 🔥 Log the environment
 if (process.env.NODE_ENV === 'development') {
   console.log('\n🚀 Server running in Development mode \n');
 } else if (process.env.NODE_ENV === 'production') {
@@ -30,7 +29,7 @@ const { handleRequest } = createYoga<NextContext>({
   graphqlEndpoint: GRAPHQL_ENDPOINT,
   fetchAPI: { Response },
   logging: true,
-  plugins: process.env.NODE_ENV === 'development' ? [loggerPlugin] : [],
+  plugins: [loggerPlugin],
 });
 
 export { handleRequest as GET, handleRequest as POST };
