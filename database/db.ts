@@ -13,7 +13,7 @@ export const connectDB = async () => {
   }
 
   if (isConnected) {
-    console.log('✅ Using existing MongoDB connection.');
+    console.log('\n✅ Using existing MongoDB connection.\n');
     return;
   }
 
