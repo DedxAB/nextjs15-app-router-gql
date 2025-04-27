@@ -1,24 +1,33 @@
-import { MONGODB_URI } from '@/utils/constants';
+import { MONGODB_NAME, MONGODB_URI } from '@/utils/constants';
 import mongoose from 'mongoose';
+
+let isConnected: boolean = false;
 
 export const connectDB = async () => {
   if (!MONGODB_URI) {
     throw new Error('MONGODB_URI is not defined');
   }
 
-  // 0 = disconnected, 1 = connected, 2 = connecting, 3 = disconnecting
-  console.log('✅ MongoDB connected at', new URL(MONGODB_URI).host);
+  if (!MONGODB_NAME) {
+    throw new Error('MONGODB_DB is not defined');
+  }
 
-  if (mongoose.connection.readyState === 1) {
-    console.log('MongoDB already connected.');
+  if (isConnected) {
+    console.log('✅ Using existing MongoDB connection.');
     return;
   }
 
   try {
-    await mongoose.connect(MONGODB_URI);
-    console.log('MongoDB connected.');
+    await mongoose.connect(MONGODB_URI, {
+      dbName: MONGODB_NAME,
+    });
+    isConnected = true;
+    console.log(
+      '✅ New MongoDB connection established at',
+      new URL(MONGODB_URI).host
+    );
   } catch (err) {
-    console.error('MongoDB connection error:', err);
+    console.error('❌ MongoDB connection error:', err);
     throw err;
   }
 };
