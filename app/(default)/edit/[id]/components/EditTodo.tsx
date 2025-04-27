@@ -50,22 +50,23 @@ const EditTodo = ({ data, error }: PageProps) => {
         <div className="text-red-500">{error}</div>
       ) : (
         <div className="flex flex-col gap-4">
-          <h1 className="text-2xl font-bold mb-4">Edit Todo</h1>
-          <div>{todo && <span>{todo.title}</span>}</div>
-          {/* add one checkbox for complete or not */}
+          <div>{todo && <span>Title: {todo.title}</span>}</div>
           <div className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={todo?.completed}
-              onChange={handleChangeStatus}
-            />
-            <label>Completed</label>
+            <span className="text-gray-500">Status:</span>
+            <label className="flex items-center gap-2 cursor-pointer">
+              {todo?.completed ? 'Completed' : 'Not Completed'}
+              <input
+                type="checkbox"
+                checked={todo?.completed}
+                onChange={handleChangeStatus}
+              />
+            </label>
           </div>
           <button
-            className="bg-blue-500 text-white p-2 rounded cursor-pointer block"
+            className="bg-blue-500 text-white p-2 rounded cursor-pointer w-fit"
             onClick={handleUpdateTodoStatus}
           >
-            Save
+            Save Changes
           </button>
         </div>
       )}
