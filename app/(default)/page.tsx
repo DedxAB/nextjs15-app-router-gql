@@ -1,12 +1,15 @@
 import { GET_TODOS } from '@/graphql/queries/todos.query';
-import { fetchGraphQL } from '@/lib/graphql-request';
+import client from '@/lib/apollo-client';
 
 import AddTodo from './components/AddTodo';
 import TodoList from './components/TodoList';
 import type { TodosResponse } from './types';
 
 export default async function HomePage() {
-  const { data, error } = await fetchGraphQL<TodosResponse>(GET_TODOS);
+  const { data, errors } = await client.query<TodosResponse>({
+    query: GET_TODOS,
+    fetchPolicy: 'network-only',
+  });
 
   return (
     <main className="p-4">
@@ -17,7 +20,10 @@ export default async function HomePage() {
 
       <section id="todo-list" className="mt-8">
         <h2 className="text-xl font-semibold mt-4">Tasks</h2>
-        <TodoList data={data} error={error} />
+        <TodoList
+          data={data}
+          error={errors && errors.length > 0 ? errors[0].message : null}
+        />
       </section>
     </main>
   );

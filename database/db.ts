@@ -1,4 +1,4 @@
-import { MONGODB_NAME, MONGODB_URI } from '@/utils/constants';
+import { MONGODB_NAME, MONGODB_URI } from '@/utils/constants.server';
 import mongoose from 'mongoose';
 
 let isConnected: boolean = false;
