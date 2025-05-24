@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const GET_TODOS = gql`
-  query {
+  query GetAllTodos{
     todos {
       _id
       title
@@ -13,7 +13,7 @@ export const GET_TODOS = gql`
 `;
 
 export const GET_TODO_BY_ID = gql`
-  query ($id: ID!) {
+  query GetTodoById($id: ID!) {
     todo(id: $id) {
       _id
       title
