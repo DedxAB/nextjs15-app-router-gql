@@ -6,7 +6,9 @@ export const todoQueryResolvers = {
     todos: async () => {
       try {
         await connectDB();
-        return await Todo.find();
+        const todos = await Todo.find();
+        console.log('Fetched todos:', todos);
+        return todos;
       } catch (error) {
         console.error('Error fetching todos:', error);
         throw new Error('Failed to fetch todos');
