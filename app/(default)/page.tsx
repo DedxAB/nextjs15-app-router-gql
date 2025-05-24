@@ -8,7 +8,7 @@ import type { TodosResponse } from './types';
 export default async function HomePage() {
   const { data, errors } = await client.query<TodosResponse>({
     query: GET_TODOS,
-    fetchPolicy: 'network-only',
+    fetchPolicy: 'no-cache',
   });
 
   return (
